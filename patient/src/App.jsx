@@ -42,7 +42,7 @@ function App() {
   if (!token) return alert('Token not generated yet!');
 
   try {
-    await axios.post('http://localhost:3000/schedule-notification', {
+    await axios.post(`${import.meta.env.VITE_API_BASE_URL}/schedule-notification`, {
       token,
       slot, // e.g., '03:00 PM'
       message: `Your appointment is at ${slot}. Please be ready!`

@@ -46,7 +46,7 @@ function SummariesPage() {
     const fetchSummaries = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:3000/api/summary/${doctorId}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/summary/${doctorId}`);
         setSummaries(res.data);
       } catch (err) {
         console.error("Error fetching summaries:", err);
@@ -66,7 +66,7 @@ function SummariesPage() {
       const aiSummary = await sendSummary(transcript);
 
       // Update summary in backend
-      await axios.put(`http://localhost:3000/api/summary/${summaryId}`, {
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/summary/${summaryId}`, {
         summary: aiSummary,
       });
 

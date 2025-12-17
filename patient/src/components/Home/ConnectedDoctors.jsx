@@ -28,7 +28,7 @@ function ConnectedDoctors({ patientId, scheduleNotification }) {
 
   const fetchConnectedDoctors = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/connection/connected/${patientId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/connection/connected/${patientId}`);
       setDoctors(res.data.doctors);
     } catch (error) {
       console.error('Failed to fetch connected doctors', error);
@@ -37,7 +37,7 @@ function ConnectedDoctors({ patientId, scheduleNotification }) {
 
   const fetchAvailableSlots = async (docId) => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/appointments/slots/${docId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/appointments/slots/${docId}`);
       setAvailableSlots((prev) => ({
         ...prev,
         [docId]: res.data.bookedSlots
@@ -49,7 +49,7 @@ function ConnectedDoctors({ patientId, scheduleNotification }) {
 
   const fetchAppointments = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/appointments/patient/${patientId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/appointments/patient/${patientId}`);
       setAppointments(res.data.appointments);
     } catch (err) {
       console.error("Failed to load appointments", err);
@@ -63,7 +63,7 @@ function ConnectedDoctors({ patientId, scheduleNotification }) {
     scheduleNotification(selectedTime);
 
     try {
-      await axios.post('http://localhost:3000/api/appointments/book', {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/appointments/book`, {
         patientId,
         docId,
         time: selectedTime,

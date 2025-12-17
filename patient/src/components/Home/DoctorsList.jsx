@@ -12,7 +12,7 @@ function DoctorsList() {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/doctor/all");
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/doctor/all`);
         setDoctors(res.data.doctors);
       } catch (error) {
         console.error("Failed to load doctors:", error);
@@ -24,7 +24,7 @@ function DoctorsList() {
 
   const sendRequest = async (docId) => {
     try {
-      await axios.post("http://localhost:3000/api/connection/send", {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/connection/send`, {
         patientId: user?._id,
         docId,
       });

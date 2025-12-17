@@ -30,7 +30,7 @@ function ConnectionRequests() {
     const fetchRequests = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:3000/api/connection/doctor/${doctorId}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/connection/doctor/${doctorId}`);
         setRequests(res.data.requests);
         setError(null);
       } catch (err) {
@@ -45,7 +45,7 @@ function ConnectionRequests() {
 
   const handleRespond = async (requestId, status) => {
     try {
-      await axios.post(`http://localhost:3000/api/connection/update-status`, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/connection/update-status`, {
         requestId,
         status,
       });

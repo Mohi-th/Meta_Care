@@ -51,7 +51,7 @@ function RiskPredictionForm() {
         Headache: form.Headache ? 1 : 0,
       };
 
-      const res = await axios.post('http://localhost:5000/predict', payload);
+      const res = await axios.post(`${import.meta.env.VITE_RISK_PREDICTION_URL}/predict`, payload);
       setResult(res.data.prediction);
       
     } catch (err) {

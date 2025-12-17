@@ -32,7 +32,7 @@ function AppointmentsPage({setCurrentPatientId,currentPatientId}) {
   const fetchAppointments = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:3000/api/appointments/doctor/${doctorId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/appointments/doctor/${doctorId}`);
       setAppointments(res.data.appointments);
     } catch (err) {
       console.error("Error fetching appointments:", err);
@@ -43,7 +43,7 @@ function AppointmentsPage({setCurrentPatientId,currentPatientId}) {
 
   const saveTranscript = async (doctorId, patientId, transcript) => {
   try {
-    const response = await axios.post("http://localhost:3000/api/summary/create", {
+    const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/summary/create`, {
       doctorId,
       patientId,
       transcript,
@@ -150,7 +150,7 @@ function AppointmentsPage({setCurrentPatientId,currentPatientId}) {
       formData.append("file", file);
 
       try {
-        const res = await fetch("http://localhost:3000/api/process-audio", {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/process-audio`, {
           method: "POST",
           body: formData,
         });

@@ -9,6 +9,10 @@ CORS(app)
 with open("complication_model.pkl", "rb") as f:
     model = pickle.load(f)
 
+@app.route("/")
+def home():
+    return {"status": "ML API running"}
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
